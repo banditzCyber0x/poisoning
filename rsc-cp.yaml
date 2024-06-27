@@ -1,0 +1,28 @@
+id: cache-poisoning-rsc
+info:
+  name: "RSC Cache Poisoning"
+  author: banditz
+  severity: high
+
+requests:
+  - raw:
+      - |
+        GET / HTTP/1.1
+        Host: {{Hostname}}
+        Rsc: 1
+
+    matchers:
+      - type: word
+        words:
+          - '6:I['
+          - '5:I['
+          - '4:I['
+          - '3:I['
+          - '2:I['
+          - '1:I['
+          - '0:I['
+          - '7:I['
+          - '9:I['
+          - '10:I['
+        part: body
+# digest: 4a0a00473045022100d9d7c8b0d49e5b4b063ab450f963202bc6b7f574b6473090729b21429b96872f02206efb93abbfd2cbb161e43dcfa6147a9b009acb8bcabcbbda67d6cbe6960a3b4f:8edb717b24e1749ef775c679337f1539
