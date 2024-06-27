@@ -1,0 +1,27 @@
+id: cache-poisoning-invoke
+info:
+  name: "invoke Cache Poisoning"
+  author: banditz
+  severity: high
+
+requests:
+  - raw:
+      - |
+        GET / HTTP/1.1
+        Host: {{Hostname}}
+        X-Invoke-Status: 888
+
+    matchers:
+      - type: dsl
+        dsl:
+          - status_code == 888
+  - raw:
+      - |
+        GET / HTTP/1.1
+        Host: {{Hostname}}
+
+    matchers:
+      - type: dsl
+        dsl:
+          - status_code == 888
+# digest: 4b0a00483046022100b6086bb0ff642d3bddf0112f97e766ef4ca9a717b176246a06f116e1948b4d47022100a7f8661e20d327c51be793c127098a9064d44ebef5527165b0cf487bf2d4f15c:8edb717b24e1749ef775c679337f1539
