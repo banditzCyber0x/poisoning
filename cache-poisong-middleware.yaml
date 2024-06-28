@@ -1,0 +1,21 @@
+id: cache-poisoning-middleware
+info:
+  name: "RSC Cache Poisoning"
+  author: banditz
+  severity: high
+variables:
+  num: "{{rand_int(9000000, 9999999)}}"
+
+http:
+  - raw:
+      - |
+        GET /?test={{num}} HTTP/1.1
+        Host: {{Hostname}}
+        X-middleware-prefetch: 1
+
+    matchers:
+      - type: dsl
+        dsl:
+          - 'contains(header, "X-Middleware-Skip")'
+          - 'contains(body_1, "{}")'
+        condition: and
