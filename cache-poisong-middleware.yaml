@@ -19,3 +19,4 @@ http:
           - 'contains(header, "X-Middleware-Skip")'
           - 'contains(body_1, "{}")'
         condition: and
+# digest: 4a0a004730450220372bf0336f9737b66f33842177b9e6c4eb69e27afd22978074ed7656aa9d6a41022100e5768886bdc44b1587b977897e9435891e2b5ed1bee5ee23015e9a8c287d3b5c:8edb717b24e1749ef775c679337f1539

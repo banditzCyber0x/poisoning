@@ -11,10 +11,14 @@ http:
       - |
         GET /?test={{num}} HTTP/1.1
         Host: {{Hostname}}
+        X-Forwarded-For: XXXX.com
 
     matchers:
       - type: word
         part: header
         words:
           - 'X-Nextjs-Cache: HIT'
-        condition: and
+          - 'CF-Cache-Status: HIT'
+          - 'X-Cache: HIT'
+     
+# digest: 4b0a00483046022100f8f97b6c7ce7437354c9709100c822edd9c360d48528ec1b96edfdee376e2f80022100b09a8f2e370fdb23b0ad5ee4541b36dff4337cf4f54c6e71856686658ff0007c:8edb717b24e1749ef775c679337f1539
